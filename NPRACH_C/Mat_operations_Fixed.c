@@ -125,7 +125,7 @@ void FwriteResults (Output_t stOut, FLOAT *afTrueValues, UINT8 ui8CvAreaRx, UINT
   fprintf(pfResults,"RCFO format     : Scaled estimated value (Actual estimated value)\n");
   fprintf(pfResults,"**********************************************************************************\n\n");
   fprintf(pfResults,"----------------------------------------------------------------------------------\n");
-  fprintf(pfResults,"UAD \t CVA \t ToA \t ToA error \t\t RCFO(x 10^-6) \t\t RCFO error(x 10^-6)\n");
+  fprintf(pfResults,"UAD\t\tCVA\t ToA\tToA error\tRCFO(x 10^-6)\tRCFO error(x 10^-6)\n");
   fprintf(pfResults,"----------------------------------------------------------------------------------\n");
 
   for(ui32Iter = 0 ; ui32Iter < NUM_SC ; ui32Iter++)
@@ -135,7 +135,7 @@ void FwriteResults (Output_t stOut, FLOAT *afTrueValues, UINT8 ui8CvAreaRx, UINT
     RCFO_diff   = Actual_RCFO - afTrueValues[ui32Iter+NUM_SC];
 
 
-    fprintf(pfResults,"%u(%u) \t %u \t\t %d \t\t %u \t\t\t %d(%.2f) \t\t\t %.2f\n",stOut.aui8UAD[ui32Iter],aui8UAD[ui32Iter],
+    fprintf(pfResults,"%u(%u)\t%2u\t %3d\t\t%u\t\t%3d (%7.2f)\t\t%6.2f\n",stOut.aui8UAD[ui32Iter],aui8UAD[ui32Iter],
             stOut.aui8CVA[ui32Iter],stOut.ai16ToA[ui32Iter],ToA_diff,stOut.ai16RCFO[ui32Iter],Actual_RCFO*pow(10,6),RCFO_diff*pow(10,6));
 
   }

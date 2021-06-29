@@ -20,6 +20,8 @@
 
 /** MACRO AND TYPE DEFINITIONS ***********************************************/
 
+#define CVA                     3
+#define PRM                     0
 #define NUM_SC                  12
 #define LEN_1                   393216    // length of UETx for preamble format = 1
 #define LEN_0                   344064    // length of UETx for preamble format = 0
@@ -33,6 +35,20 @@
 #define NUMSYMS_1               40     // for CVA = 1 (8*5)
 #define N                       512    // FFT size
 #define RCFO_SCALE              131072 // 2^17(N * M2 = 512 * 256)
+
+#if CVA == 3
+   #define NUM_SYM_GRPS  NUM_SYM_GRPS_3
+   #define NUMSYMS       NUMSYMS_3
+
+#elif CVA == 2
+   #define NUM_SYM_GRPS  NUM_SYM_GRPS_2
+   #define NUMSYMS       NUMSYMS_2
+
+#else
+   #define NUM_SYM_GRPS  NUM_SYM_GRPS_1
+   #define NUMSYMS       NUMSYMS_1
+
+#endif
 
 typedef struct TxParams
 {
@@ -81,10 +97,6 @@ INT32 FindMax (INT32 *ai32Arr,UINT32 ui32ArrLen);
 INT32 FindMean (INT32 *ai32Arr,UINT32 ui32ArrLen);
 
 INT16 FindMeanSel (INT32 *ai32Arr,UINT8 ui8Sind,UINT8 ui8Eind);
-
-void FwriteComp (CPLX16 *pcplx16Input ,UINT32 ui32InLen ,FILE *pf);
-
-void PrintComp (CPLX16 *pcplx16Input, UINT32 ui32Ind);
 
 void FwriteResults (Output_t stOut, FLOAT *afTrueValues, UINT8 ui8CvAreaRx, UINT8 ui8PreambleFormat, FILE *pfResults);
 

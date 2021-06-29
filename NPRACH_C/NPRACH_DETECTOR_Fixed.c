@@ -25,14 +25,6 @@
 
 void NPRACHDetector()
 {
-  /** PRIVATE VARIABLE DEFINITIONS *********************************************/
-  /* For reference on the below parameters, check NPRACH_Config_Fixed.c */
-
-  UINT16 ui16CpLen        = stTxParams.ui16CpLen;
-  UINT8 ui8UADTHCVA1      = stTxParams.ui8UADTHCVA1 ;
-  UINT8 ui8UADTHCVA2      = stTxParams.ui8UADTHCVA2 ;
-  UINT8 ui8UADTHCVA3      = stTxParams.ui8UADTHCVA3 ;
-
   if (stTxParams.ui8PreambleFormat == 0)
     {
       stOut = NPRACHDetectorPrm0(0);
@@ -41,9 +33,9 @@ void NPRACHDetector()
       {
           aui8UAD [ui32Iter] = stOut.aui8UAD[ui32Iter];
 
-          if ( (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA3 && stOut.aui8CVA[ui32Iter] == 3 ) ||
-               (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA2 && stOut.aui8CVA[ui32Iter] == 2 ) ||
-               (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA1 && stOut.aui8CVA[ui32Iter] == 1 ))
+          if ( (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA3 && stOut.aui8CVA[ui32Iter] == 3 ) ||
+               (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA2 && stOut.aui8CVA[ui32Iter] == 2 ) ||
+               (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA1 && stOut.aui8CVA[ui32Iter] == 1 ))
             {
                stOut.aui8UAD[ui32Iter] = 1;
             }
@@ -82,7 +74,7 @@ void NPRACHDetector()
             }
           else
             {
-              stOut.ai16ToA[ui32Iter]  = (((UINT16)(stOut2.ai16ToA[ui32Iter] + ui16CpLen / 2 - 1))%ui16CpLen) + 1;
+              stOut.ai16ToA[ui32Iter]  = (((UINT16)(stOut2.ai16ToA[ui32Iter] + stTxParams.ui16CpLen / 2 - 1))% stTxParams.ui16CpLen) + 1;
               stOut.ai16RCFO[ui32Iter]  = stOut2.ai16RCFO[ui32Iter];
               stOut.aui8UAD[ui32Iter]   = stOut2.aui8UAD[ui32Iter];
               stOut.aui8CVA[ui32Iter]   = stOut2.aui8CVA[ui32Iter];
@@ -90,9 +82,9 @@ void NPRACHDetector()
 
           aui8UAD [ui32Iter] = stOut.aui8UAD[ui32Iter];
 
-          if ( (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA3 && stOut.aui8CVA[ui32Iter] == 3 ) ||
-               (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA2 && stOut.aui8CVA[ui32Iter] == 2 ) ||
-               (stOut.aui8UAD[ui32Iter] >= ui8UADTHCVA1 && stOut.aui8CVA[ui32Iter] == 1 ))
+          if ( (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA3 && stOut.aui8CVA[ui32Iter] == 3 ) ||
+               (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA2 && stOut.aui8CVA[ui32Iter] == 2 ) ||
+               (stOut.aui8UAD[ui32Iter] >= stTxParams.ui8UADTHCVA1 && stOut.aui8CVA[ui32Iter] == 1 ))
             {
               stOut.aui8UAD[ui32Iter] = 1;
             }

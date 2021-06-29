@@ -23,16 +23,23 @@
 
 /** FILE INCLUDES *********************************************************/
 
-FLOAT afTrueValues [2*NUM_SC] ={
-                                #include "Sample_Test_Data\\PRM_0\\True_values0_1.txt"
-                               }; // To test for other file True_values0_xx.txt change xx (1 - 100)
+#if PRM == 0
+    FLOAT afTrueValues [2*NUM_SC] ={
+                                   #include "Sample_Test_Data\\PRM_0\\True_values0_1.txt"
+                                   }; // To test for other file True_values0_xx.txt vary xx (1 - 100)
+    char *pcfname = "Sample_Test_Results\\PRM_0\\Results_PRM0.txt";
+#else
+    FLOAT afTrueValues [2*NUM_SC] ={
+                                   #include "Sample_Test_Data\\PRM_1\\True_values1_1.txt"
+                                   }; // To test for other file True_values1_xx.txt vary xx (1 - 100)
+    char *pcfname = "Sample_Test_Results\\PRM_1\\Results_PRM1_1.txt";
+#endif
 
 /** GLOBAL VARIABLE DEFINITIONS **********************************************/
 
-UINT8  ui8CvAreaRx       = 3;  // 3 or 2 or 1
-UINT8  ui8PreambleFormat = 0;  // 0 or 1
+UINT8  ui8CvAreaRx       = 3;  // 3 or 2 or 1 (change in NPRACH_Fixed.h too)
+UINT8  ui8PreambleFormat = 0;  // 0 or 1      (change in NPRACH_Fixed.h too)
 FILE   *pfResults;
-char   achfname[20];
 
 int main()
 {
@@ -52,16 +59,15 @@ int main()
 
   /** Writing results obtained i.e, ToA,RCFO,CVA and UAD into separate files to compare it with the Matlab results **/
 
-  sprintf(achfname, "Sample_Test_Results\\PRM_0\\Results_PRM%u.txt",ui8PreambleFormat);
-  pfResults = fopen(achfname,"w+");
+  pfResults = fopen(pcfname,"w+");
 
   FwriteResults(stOut, afTrueValues, ui8CvAreaRx, ui8PreambleFormat, pfResults);
 
   fclose(pfResults);
 
-  printf("\n************************** SUCCESS *****************************\n");
-  printf("\Detection finished, Obtained results stored in '%s'\n",achfname);
-  printf("****************************************************************\n");
+  printf("\n************************** SUCCESS ******************************************************\n");
+  printf("\Detection finished, Obtained results stored in '%s'\n",pcfname);
+  printf("*****************************************************************************************\n");
 
 }
 

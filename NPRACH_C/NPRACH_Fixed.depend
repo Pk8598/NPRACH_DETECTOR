@@ -1,13 +1,14 @@
 # depslib dependency file v1.0
-1624955987 source:e:\iitdh\project\nprach_fixed\main.c
+1624995238 source:e:\iitdh\project\nprach_fixed\main.c
 	"NPRACH_Fixed.h"
-	"Sample_Test_Data\\PRM_0\\True_values0_2.txt"
+	"Sample_Test_Data\\PRM_0\\True_values0_1.txt"
+	"Sample_Test_Data\\PRM_1\\True_values1_2.txt"
 
 1624922021 source:e:\iitdh\project\nprach_fixed\nprach_config_fixed.c
 	"NPRACH_Fixed.h"
 	"freqHops.txt"
 
-1624950641 e:\iitdh\project\nprach_fixed\nprach_fixed.h
+1624994678 e:\iitdh\project\nprach_fixed\nprach_fixed.h
 	"NB_Datatypes.h"
 
 1624923917 e:\iitdh\project\nprach_fixed\nb_datatypes.h
@@ -21,10 +22,10 @@
 
 1615828916 e:\iitdh\project\nprach_fixed\freqhops.txt
 
-1624956208 source:e:\iitdh\project\nprach_fixed\mat_operations_fixed.c
+1624995556 source:e:\iitdh\project\nprach_fixed\mat_operations_fixed.c
 	"NPRACH_Fixed.h"
 
-1624922625 source:e:\iitdh\project\nprach_fixed\nprach_detector_fixed.c
+1624980158 source:e:\iitdh\project\nprach_fixed\nprach_detector_fixed.c
 	"NPRACH_Fixed.h"
 
 1624923982 source:e:\iitdh\project\nprach_fixed\nb_ul_fft.c
@@ -38,12 +39,12 @@
 	"NB_UL_FFT.h"
 	"NPRACH_Fixed.h"
 
-1624953310 source:e:\iitdh\project\nprach_fixed\nprach_detector_prm0_fixed.c
+1624995248 source:e:\iitdh\project\nprach_fixed\nprach_detector_prm0_fixed.c
 	"NPRACH_Fixed.h"
 	"NB_UL_FFT.h"
-	"Sample_Test_Data\\PRM_0\\rxDataMat0_2.txt"
-	"Sample_Test_Data\\PRM_1\\rxDataMat1_10.txt"
-	"Sample_Test_Data\\PRM_1\\rxDataMatsh1_10.txt"
+	"Sample_Test_Data\\PRM_0\\rxDataMat0_1.txt"
+	"Sample_Test_Data\\PRM_1\\rxDataMat1_2.txt"
+	"Sample_Test_Data\\PRM_1\\rxDataMatsh1_2.txt"
 
 1620977256 e:\iitdh\project\nprach_fixed\frxdatamat_cv3_0.txt
 
@@ -59,9 +60,19 @@
 
 1624905873 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_0\\rxdatamat0_1.txt
 
-1624947730 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_0\\true_values0_1.txt
+1624952619 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_0\\true_values0_1.txt
 
 1624952628 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_0\\true_values0_2.txt
 
 1624905885 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_0\\rxdatamat0_2.txt
+
+1624907291 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_1\\rxdatamat1_1.txt
+
+1624907291 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_1\\rxdatamatsh1_1.txt
+
+1624956830 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_1\\true_values1_2.txt
+
+1624907306 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_1\\rxdatamat1_2.txt
+
+1624907307 e:\iitdh\project\nprach_fixed\sample_test_data\\prm_1\\rxdatamatsh1_2.txt
 

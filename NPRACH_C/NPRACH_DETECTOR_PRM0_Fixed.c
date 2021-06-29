@@ -35,23 +35,26 @@
 
 /** FILE INCLUDES *********************************************************/
 
-INT16 ai16RxDataMatBuffer0 [2*N*NUMSYMS_3] ={
-                                           #include "Sample_Test_Data\\PRM_0\\rxDataMat0_1.txt"
-                                           }; // To test for other file rxDataMat0_xx.txt change xx (1 - 100)
 
-INT16 ai16RxDataMatBuffer1 [2*N*NUMSYMS_3] ={
-                                           #include "Sample_Test_Data\\PRM_1\\rxDataMat1_10.txt"
-                                           }; // To test for other file rxDataMat1_xx.txt change xx (1 - 100)
+INT16 ai16RxDataMatBuffer0 [2*N*NUMSYMS] ={
+                                          #include "Sample_Test_Data\\PRM_0\\rxDataMat0_1.txt"
+                                          }; // To test for other file rxDataMat1_xx.txt vary xx (1 - 100)
 
-INT16 ai16RxDataMatBuffer1sh [2*N*NUMSYMS_3] ={
-                                           #include "Sample_Test_Data\\PRM_1\\rxDataMatsh1_10.txt"
-                                           }; // To test for other file rxDataMatsh1_xx.txt change xx (1 - 100)
+INT16 ai16RxDataMatBuffer1 [2*N*NUMSYMS] ={
+                                          #include "Sample_Test_Data\\PRM_1\\rxDataMat1_1.txt"
+                                          }; // To test for other file rxDataMat1_xx.txt vary xx (1 - 100)
+
+INT16 ai16RxDataMatBuffer1sh [2*N*NUMSYMS] ={
+                                            #include "Sample_Test_Data\\PRM_1\\rxDataMatsh1_1.txt"
+                                            }; // To test for other file rxDataMatsh1_xx.txt vary xx (1 - 100)
+
+
 
 /** GLOBAL VARIABLE DEFINITIONS **********************************************/
 
-CPLX16 acplx16RxDataMat  [N*NUMSYMS_3];
+CPLX16 acplx16RxDataMat  [N*NUMSYMS];
 
-CPLX16 acplx16RxDataProc [NUM_SC*NUMSYMS_3];
+CPLX16 acplx16RxDataProc [NUM_SC*NUMSYMS];
 
 UINT8 aui8FreqsHopsSC    [128];
 
@@ -97,32 +100,24 @@ UINT8  ui8IterInd;
 Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
 {
   /** PRIVATE VARIABLE DEFINITIONS *********************************************/
-  /* Refer NPRACH_Config_Fixed.c for information on these Parameters */
-
-  UINT8  ui8NumReps             = stTxParams.ui8NumReps;           // 32 for cva 3; 8 for cva 2; 2 for cva 1
-  UINT8  ui8NumSymGrpsPerRep    = stTxParams.ui8NumSymGrpsPerRep;  // 4
-  UINT8  ui8NumIdenSymsPerGrp   = stTxParams.ui8NumIdenSymsPerGrp; // 5
-  UINT16 ui16CpLen              = stTxParams.ui16CpLen;                  // 512 for Preamble format 1; 128 for Preamble format 0
-  UINT16 ui16NumSymGrps         = ui8NumSymGrpsPerRep * ui8NumReps;      // 128(4*32)  for cva 3; 32(4*8)   for cva 2; 8(4*2)   for cva 1
-  UINT16 ui16M                  = ui16NumSymGrps * ui8NumIdenSymsPerGrp; // 640(128*5) for cva 3; 160(32*5) for cva 2; 40(8*5)  for cva 1
-  UINT8  ui8PrmFormat           = stTxParams.ui8PreambleFormat;
 
   /* FFT Lengths for the 2D FFT Correlation for Joint ToA and CFO Estimation */
   UINT16 ui16M1 = stTxParams.ui16FFT2M1;  // 128(N/4) for preamble format 0, 512(N) for preamble format 1
   UINT16 ui16M2 = stTxParams.ui16FFT2M2;  // 256
 
+  /* Output structure */
   Output_t stDout = {0};
 
   /*
-  Importing RxDataMat (2D complex array of size N x (M = numSymGrps*numIdenSymsPerGrp)) from Matlab
+  Importing RxDataMat (2D complex array of size N x (M = NUMSYMS)) from Matlab
   In Matlab, RxDataMat was flattened to get 1D array of size N*M and was written into a file
   for preamble format-0 : rxDataMat0_xx.txt
   for preamble format-1 : rxDataMat1_xx.txt, rxDataMatsh1_xx.txt
   */
 
-  if (ui8PrmFormat == 0)
+  if (stTxParams.ui8PreambleFormat == 0)
   {
-    for (ui32Iter =0; ui32Iter < N*NUMSYMS_3 ; ui32Iter++)
+    for (ui32Iter =0; ui32Iter < N*NUMSYMS ; ui32Iter++)
     {
      acplx16RxDataMat[ui32Iter].real = ai16RxDataMatBuffer0[2*ui32Iter];
      acplx16RxDataMat[ui32Iter].imag = ai16RxDataMatBuffer0[2*ui32Iter+1];
@@ -134,7 +129,7 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
   {
     if (ui8Flag == 0)
     {
-        for (ui32Iter =0; ui32Iter < N*NUMSYMS_3 ; ui32Iter++)
+        for (ui32Iter =0; ui32Iter < N*NUMSYMS ; ui32Iter++)
         {
          acplx16RxDataMat[ui32Iter].real = ai16RxDataMatBuffer1[2*ui32Iter];
          acplx16RxDataMat[ui32Iter].imag = ai16RxDataMatBuffer1[2*ui32Iter+1];
@@ -143,7 +138,7 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
 
     else
     {
-        for (ui32Iter =0; ui32Iter < N*NUMSYMS_3 ; ui32Iter++)
+        for (ui32Iter =0; ui32Iter < N*NUMSYMS ; ui32Iter++)
         {
          acplx16RxDataMat[ui32Iter].real = ai16RxDataMatBuffer1sh[2*ui32Iter];
          acplx16RxDataMat[ui32Iter].imag = ai16RxDataMatBuffer1sh[2*ui32Iter+1];
@@ -176,13 +171,13 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
     Spectral Components as per the Hopping Pattern for specific user
     */
 
-    memset(acplx16RxDataProc, 0, sizeof(CPLX16) * NUM_SC * NUMSYMS_3); // Initializing/resetting the memory to 0
+    memset(acplx16RxDataProc, 0, sizeof(CPLX16) * NUM_SC * NUMSYMS); // Initializing/resetting the memory to 0
 
-    for (ui16IterSymGrps = 0; ui16IterSymGrps < ui16NumSymGrps; ui16IterSymGrps++)
+    for (ui16IterSymGrps = 0; ui16IterSymGrps < NUM_SYM_GRPS; ui16IterSymGrps++)
     {
-      ui16Ind = aui8FreqsHopsSC[ui16IterSymGrps] * NUMSYMS_3 + (ui16IterSymGrps*ui8NumIdenSymsPerGrp);
+      ui16Ind = aui8FreqsHopsSC[ui16IterSymGrps] * NUMSYMS + (ui16IterSymGrps*NUM_SYMS_PER_SYMGRP);
 
-      for (ui8IterIdenSymsPerGrp = 0; ui8IterIdenSymsPerGrp < ui8NumIdenSymsPerGrp; ui8IterIdenSymsPerGrp++)
+      for (ui8IterIdenSymsPerGrp = 0; ui8IterIdenSymsPerGrp < NUM_SYMS_PER_SYMGRP; ui8IterIdenSymsPerGrp++)
       {
        acplx16RxDataProc[ui16Ind + ui8IterIdenSymsPerGrp] = acplx16RxDataMat[ui16Ind + ui8IterIdenSymsPerGrp];
       }
@@ -193,10 +188,10 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
     memset(ai32CorrOutAll, 0, sizeof(INT32) * ui16M1 * ui16M2); // Initializing/resetting the memory to 0
     ui8Count = 0;
 
-    for(ui8IterCorr1 = 0; ui8IterCorr1 < ui8NumReps-1; ui8IterCorr1 = ui8IterCorr1+2)
+    for(ui8IterCorr1 = 0; ui8IterCorr1 < stTxParams.ui8NumReps-1; ui8IterCorr1 = ui8IterCorr1+2)
       {
 
-        memset(ai32CorrOutTemp , 0, sizeof(INT32) * ui16M1 * ui16M2); // Initializing the memory to 0
+        memset(ai32CorrOutTemp , 0, sizeof(INT32) * ui16M1 * ui16M2); // Initializing/resetting the memory to 0
 
         for(ui8IterCorr2 = 0; ui8IterCorr2 < 2; ui8IterCorr2++)
         {
@@ -204,7 +199,7 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
 
           /* Extracting 20 Columns(each of length 12) from 'rxDataProc' into 'FFT2In' */
 
-          MatSlice(acplx16RxDataProc, acplx16FFT2In, 0, NUM_SC, ui8IterInd * NUMSYMS_PER_REP, (ui8IterInd + 1) * NUMSYMS_PER_REP, ui16M);
+          MatSlice(acplx16RxDataProc, acplx16FFT2In, 0, NUM_SC, ui8IterInd * NUMSYMS_PER_REP, (ui8IterInd + 1) * NUMSYMS_PER_REP, NUMSYMS);
 
           /* Computing 2D FFT(size: M1 x M2) of the matrix 'FFT2In' of size 12 x 20 */
 
@@ -244,7 +239,7 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
         ui8Count += 1;
       }
 
-    i16CVA3Pmr    = FindMax(ai32CVACorr ,ui8NumReps/2) / FindMean(ai32CVACorr ,ui8NumReps/2);
+    i16CVA3Pmr    = FindMax(ai32CVACorr ,stTxParams.ui8NumReps/2) / FindMean(ai32CVACorr ,stTxParams.ui8NumReps/2);
 
     i16Cov1Others = FindMeanSel(ai32CVACorr ,1,3);
 
@@ -298,25 +293,11 @@ Output_t NPRACHDetectorPrm0(UINT8 ui8Flag)
         }
       }
 
-      if (ui16RCFOTmp >= ui16M2/2)
-      {
-        i16RCFOHat = (ui16RCFOTmp  - ui16M2); // scaled up by 2^17
-      }
-      else
-      {
-        i16RCFOHat = (ui16RCFOTmp); // scaled up by 2^17
-      }
+      i16RCFOHat = ui16RCFOTmp >= ui16M2/2 ? (ui16RCFOTmp  - ui16M2) : ui16RCFOTmp ; // scaled up by 2^17
 
-      if (ui16ToATmp >= ui16M1/2)
-      {
-        i16ToAHat = (-(ui16ToATmp - ui16M1) * N / ui16M1);
-      }
-      else
-      {
-        i16ToAHat = (-(ui16ToATmp) * N / ui16M1);
-      }
+      i16ToAHat  = ui16ToATmp >= ui16M1/2 ? (- (ui16ToATmp - ui16M1) * N / ui16M1) : (- ui16ToATmp * N / ui16M1);
 
-      stDout.ai16ToA [ui8IterSc]  = i16ToAHat<0 ? i16ToAHat + ui16CpLen : i16ToAHat;
+      stDout.ai16ToA [ui8IterSc]  = i16ToAHat< 0 ? i16ToAHat + stTxParams.ui16CpLen : i16ToAHat;
       stDout.ai16RCFO[ui8IterSc]  = i16RCFOHat;
       stDout.aui8UAD [ui8IterSc]  = FindMax(pi32CorrOut,ui16M1*ui16M2) / FindMean(pi32CorrOut,ui16M1*ui16M2);
 
