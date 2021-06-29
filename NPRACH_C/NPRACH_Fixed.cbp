@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="NPRACH_Fixed" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/NPRACH_Fixed" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/NPRACH_Fixed" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Mat_operations_Fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NB_Datatypes.h" />
+		<Unit filename="NB_UL_FFT.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NB_UL_FFT.h" />
+		<Unit filename="NB_UL_FFT2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NPRACH_Config_Fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NPRACH_DETECTOR_Fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NPRACH_DETECTOR_PRM0_Fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NPRACH_Fixed.h" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_1.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_10.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_2.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_3.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_4.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_5.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_6.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_7.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_8.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/True_values0_9.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_1.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_10.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_2.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_3.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_4.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_5.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_6.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_7.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_8.txt" />
+		<Unit filename="Sample_Test_Data/PRM_0/rxDataMat0_9.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_1.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_10.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_2.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_3.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_4.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_5.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_6.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_7.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_8.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/True_values1_9.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_1.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_10.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_2.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_3.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_4.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_5.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_6.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_7.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_8.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMat1_9.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_1.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_10.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_2.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_3.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_4.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_5.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_6.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_7.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_8.txt" />
+		<Unit filename="Sample_Test_Data/PRM_1/rxDataMatsh1_9.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_1.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_10.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_2.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_3.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_4.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_5.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_6.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_7.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_8.txt" />
+		<Unit filename="Sample_Test_Results/PRM_0/Results_PRM0_9.txt" />
+		<Unit filename="freqHops.txt" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
